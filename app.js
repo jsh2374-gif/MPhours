@@ -1,6 +1,6 @@
 const STORAGE_KEY = "jeffery-hours-state-v1";
 const NAME = "Jeffery";
-
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxrslwoW4Tg1dQVpdmzz_2dhQ2x8FGulFejjDpRw3jQ_O-hZMJHn7vFzL8pb0vlRxIC/exec";
 const els = {
   statusTitle: document.querySelector("#statusTitle"),
   clock: document.querySelector("#clock"),
