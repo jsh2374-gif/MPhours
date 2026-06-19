@@ -174,32 +174,38 @@ async function endWork() {
   if (state.active.status === "break" && state.active.breakStart) {
     state.active.breakMinutes += minutesBetween(state.active.breakStart);
   }
-await fetch(https://script.google.com/macros/s/AKfycbxrslwoW4Tg1dQVpdmzz_2dhQ2x8FGulFejjDpRw3jQ_O-hZMJHn7vFzL8pb0vlRxIC/exec, {
-  method: "POST",
-  mode: "no-cors",
-  headers: { "Content-Type": "text/plain;charset=utf-8" },
-  body: JSON.stringify({
-    name: "Jeffery",
-    date: row[1],
-    day: row[2],
-    start: row[3],
-    finish: row[4],
-    breakMinutes: row[5],
-    accomplishment: row[6],
-    job: row[7],
-    hours: row[8],
-    checkNumber: "",
-    notes: row[10],
-  }),
-});
+
   const finished = now();
   state.active.finish = finished.toISOString();
   state.active.job = els.job.value || state.active.job || "MP";
   state.active.notes = els.notes.value.trim();
+
+  const row = currentShiftRow(state.active, finished);
+
+ await fetch("https://script.google.com/macros/s/AKfycbxrslwoW4Tg1dQVpdmzz_2dhQ2x8FGulFejjDpRw3jQ_O-hZMJHn7vFzL8pb0vlRxIC/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({
+      name: "Jeffery",
+      date: row[1],
+      day: row[2],
+      start: row[3],
+      finish: row[4],
+      breakMinutes: row[5],
+      accomplishment: row[6],
+      job: row[7],
+      hours: row[8],
+      checkNumber: "",
+      notes: row[10],
+    }),
+  });
+
   state.shifts.unshift({
     ...state.active,
     hours: netHours(state.active, finished),
   });
+
   state.active = null;
   els.notes.value = "";
   saveState();
