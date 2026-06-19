@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#184e5f">
+    <title>Jeffery Hours</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Jeffery Hours</p>
+          <h1 id="statusTitle">Ready</h1>
+        </div>
+        <div class="clock" id="clock">--:--</div>
+      </header>
+
+      <section class="shift-panel" aria-label="Current shift">
+        <div class="metric">
+          <span>Elapsed</span>
+          <strong id="elapsed">0.00</strong>
+        </div>
+        <div class="metric">
+          <span>Break</span>
+          <strong id="breakTotal">0 min</strong>
+        </div>
+        <div class="metric">
+          <span>Job</span>
+          <strong id="currentJob">MP</strong>
+        </div>
+      </section>
+
+      <section class="controls" aria-label="Shift controls">
+        <button class="primary" id="startBtn" type="button">Start Work</button>
+        <button id="pauseBtn" type="button">Pause Break</button>
+        <button id="resumeBtn" type="button">Resume Work</button>
+        <button class="danger" id="endBtn" type="button">End Work</button>
+      </section>
+
+      <section class="form-panel" aria-label="Shift details">
+        <label>
+          Job
+          <select id="job">
+            <option>MP</option>
+            <option>AVA</option>
+            <option>JCS</option>
+            <option>ND</option>
+            <option>LF</option>
+            <option>GM</option>
+            <option>HH</option>
+            <option>Kes</option>
+            <option>TBUR</option>
+            <option>AVACP</option>
+            <option>AVACM</option>
+          </select>
+        </label>
+        <label>
+          Notes
+          <textarea id="notes" rows="4" placeholder="What did you work on?"></textarea>
+        </label>
+      </section>
+
+      <section class="history-panel" aria-label="Saved shifts">
+        <div class="section-head">
+          <h2>Saved Shifts</h2>
+          <div class="head-actions">
+            <button id="clearBtn" type="button">Clear</button>
+            <button id="exportBtn" type="button">Export CSV</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Start</th>
+                <th>Finish</th>
+                <th>Break</th>
+                <th>Job</th>
+                <th>Hours</th>
+              </tr>
+            </thead>
+            <tbody id="shiftRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <dialog id="confirmDialog">
+        <form method="dialog">
+          <h2 id="dialogTitle">Confirm</h2>
+          <p id="dialogText"></p>
+          <div class="dialog-actions">
+            <button value="cancel" type="submit">Cancel</button>
+            <button class="primary" id="dialogConfirm" value="confirm" type="submit">Confirm</button>
+          </div>
+        </form>
+      </dialog>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
